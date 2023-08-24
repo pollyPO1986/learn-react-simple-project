@@ -8,6 +8,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 # 允許你從 Action 頁簽上手動執行 workflow
   workflow_dispatch:
@@ -25,17 +28,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: npm install
-        run: npm ci
-
-      - name: Build dist
-        run: npm run build
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
 
       - name: Deploy with gh-pages
-        with:
-          publish_dir: ./dist
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+          npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_GIT_KEY }}
