@@ -1,0 +1,41 @@
+# Workflow Name
+# CI/CD 一次要運行的整個過程
+name: Github-Pages
+
+# on: workflow 的觸發條件
+# push: 這裡是「指定某一隻 branches，當指定分支有 push 的動作時，會被觸發」
+on:
+  push:
+    branches:
+      - master
+
+# 允許你從 Action 頁簽上手動執行 workflow
+  workflow_dispatch:
+
+# jobs: 任務。 可以擁有多個 job
+# deploy: job 的名稱。 每個 job 由許多 steps 組成，可以循序或平行執行
+# runs-on: 則是指定要運行的環境
+# steps: 步驟，要執行的指令
+# uses: 直接使用其他開發者寫好並發佈的 actions
+jobs:
+  deploy:
+    name: Build and deploy gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: npm install
+        run: npm ci
+
+      - name: Build dist
+        run: npm run build
+
+      - name: Deploy with gh-pages
+        with:
+          publish_dir: ./dist
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
