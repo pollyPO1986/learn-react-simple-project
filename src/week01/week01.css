@@ -1,0 +1,40 @@
+.button-line-style {
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-save {
+  border-color: #f90;
+}
+
+.btn-edit {
+  border-color: #024bef;
+  color: #024bef;
+}
+
+.btn-remove {
+  border-color: #f00;
+  color: #f00;
+}
+
+.menu-table {
+  background-color: rgba(153, 153, 153 , 0.4);
+  width: 100%;
+}
+
+.menu-table-head th {
+  padding: 10px;
+}
+
+.menu-table-body .products-quantity {
+  padding: 0 10px;
+}
