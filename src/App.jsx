@@ -1,5 +1,5 @@
 import { Route, Routes, Link } from "react-router-dom";
-import WeekOne from '@weekOne/week01.jsx';
+import WeekOne from '@weekOne/Week01.jsx';
 import WeekTwo from '@weekTwo/Week02.jsx';
 import '@/App.css'
 
