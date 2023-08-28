@@ -1,12 +1,25 @@
-import WeekOne from './week01/week01';
-import './App.css'
+import { Route, Routes, Link } from "react-router-dom";
+import WeekOne from '@weekOne/week01.jsx';
+import WeekTwo from '@weekTwo/Week02.jsx';
+import '@/App.css'
 
 function App () {
-
   return (
     <>
-      <h1>Week 01 - Home work</h1>
-      <WeekOne />
+      <header>
+        <ul className="nav-list">
+          <li>
+            <Link to="/">Week 01</Link>
+          </li>
+          <li>
+            <Link to="/week02">Week 02</Link>
+          </li>
+        </ul>
+      </header>
+      <Routes>
+        <Route path="/" element={<WeekOne />} />
+        <Route path="/week02" element={<WeekTwo />} />
+      </Routes>
     </>
   )
 }

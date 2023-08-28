@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './week01.css';
+import '@weekOne/week01.css';
 
 const drinkData = [
   {
@@ -91,23 +91,26 @@ function MenuItemTemplate ({ data }) {
 
 export default function Table () {
   return (
-    <table className="menu-table">
-      <thead className="menu-table-head">
-        <tr>
-          <th scope="col">品項</th>
-          <th scope="col">描述</th>
-          <th scope="col">價格</th>
-          <th scope="col">庫存</th>
-          <th scope="col">操作</th>
-        </tr>
-      </thead>
-      <tbody className="menu-table-body">
-        {drinkData.map((drink) => {
-          return (
-            <MenuItemTemplate key={drink.id} data={drink} />
-          );
-        })}
-      </tbody>
-    </table >
+    <>
+      <h1>Week 01 - Home work</h1>
+      <table className="menu-table">
+        <thead className="menu-table-head">
+          <tr>
+            <th scope="col">品項</th>
+            <th scope="col">描述</th>
+            <th scope="col">價格</th>
+            <th scope="col">庫存</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody className="menu-table-body">
+          {drinkData.map((drink) => {
+            return (
+              <MenuItemTemplate key={drink.id} data={drink} />
+            );
+          })}
+        </tbody>
+      </table >
+    </>
   );
 }
